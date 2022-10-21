@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio3</title>
+
+
+<!--
+Ejercicio.
+En un formulario bien formado en HTML debe haber un campo de entrada numérico y un botón.
+Cuando se pulse sobre el botón habrá que comprobar que haya escrito un  número mayor 
+o igual que 0 y menor o igual que 9.
+Si es un  número entre 0 y 9 se debe esperar 3 segundos 
+y después construir dentro de una etiqueta <table></table> 
+la tabla de multiplicar de ese número, cada resultado en una fila y cada número 
+y cada signo * y = en una celda, en cada fila.
+
+Para crear cada fila en una cadena, utilizar plantillas literales:
+https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Template_literals
+
+Para el evento del botón se puede utilizar onclick o bien addEventListener.
+https://www.w3schools.com/JSREF/event_onclick.asp
+https://www.w3schools.com/jsref/met_element_addeventlistener.asp
+
+Si no es un número entre 0 y 9 te debe mostrar un mensaje de error en un span que habrá junto al campo de entrada numérico. Recuerda que cuando sea un número entre 0 y 9 debes borrar el mensaje de error para que no se quede escrito siempre.
+Valida el fichero HTML en https://validator.w3.org/ y sube la captura de pantalla al repositorio.
+-->
+
+<script>
+window.addEventListener('DOMContentLoaded',()=>{
+    window.onload=setTimeout(()=>{
+      document.getElementById("boton").addEventListener('click',(event)=>{
+        const num = parseInt(document.getElementById("entrada").value);
+        if(num>=0 && num<=9){
+            document.querySelector("span").innerHTML="ok";
+            let tr="";
+            for(let i=0; i<=10; i++ ){
+                tr+=`<tr><td>${i}</td><td>*</td><td>${num}</td><td>=</td><td>${i*num}</td></tr>`;
+            }
+            document.querySelector("table").innerHTML=tr;
+        }else{
+            document.querySelector("span").innerHTML="error";
+            document.querySelector("table").innerHTML="";
+        }
+      });
+    },3000);
+});
+
+</script>
+</head>
+<body>
+    <form>
+        <label>Introduce un numero entre 0 y 9</label><br><br>
+        <input id="entrada" type="text"><span></span><br><br>
+        <button id="boton" >comprobar</button><br><br>
+        <table></table>
+    </form>
+
+    
+</body>
+</html>

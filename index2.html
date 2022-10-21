@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        function comprueba(){
+            const num = parseInt(document.getElementById("entrada").value);
+            if(num>=0 && num<=9){
+                document.querySelector("span").innerHTML="ok";
+                let tr="";
+                for(let i=0; i<=10; i++ ){
+                    tr+=`<tr><td>${i}</td><td>*</td><td>${num}</td><td>=</td><td>${i*num}</td></tr>`;
+                }
+                document.querySelector("table").innerHTML=tr;
+            }else{
+            document.querySelector("span").innerHTML="error";
+            document.querySelector("table").innerHTML="";
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <form>
+        <label>Introduce un numero entre 0 y 9</label><br><br>
+        <input id="entrada"><span></span><br><br>
+        <button id="boton" onclick="comprueba()">Comprobar</button><br><br>
+        <table></table>
+    </form>
+</body>
+</html>
